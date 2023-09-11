@@ -21,7 +21,7 @@ $dataFinal="2023-09-11";
 $edicao = 6390;
 $tipoDocumento = 4;
 $numero = 88;
-$por = "doc"; // Mude o tipo de consulta para testar (edicao, doc, texto)
+$por = "texto"; // Mude o tipo de consulta para testar (edicao, doc, texto) 
 
 $url = "https://diariooficial.to.gov.br/busca?por=";
 

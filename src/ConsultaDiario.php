@@ -7,6 +7,7 @@ use ApiDoe\DiarioOficial;
 class ConsultaDiario
 {
     private $diario;
+    private $quantidadeDeColunas;
 
     public function __construct(DiarioOficial $diario)
     {
@@ -79,10 +80,10 @@ class ConsultaDiario
         return file_get_contents($url);
     }
 
-
     private function getHTMLContents($content)
     {
-        $quantidadeResultados = $this->getQuantidadeResultados($content);
+        $this->quantidadeDeColunas = $this->getQuantidadeResultados($content);
+
         preg_match_all('/<td>(.*?)<\/td>/s', $content, $match);
         return $this->chunckArray($match);
     }
@@ -95,13 +96,14 @@ class ConsultaDiario
         $dom->loadHTML($content);
         $tbody = $dom->getElementsByTagName('tbody');
         $tr = $tbody[0]->getElementsByTagName('tr');
+        $td = $tr[0]->getElementsByTagName('td');
 
-        return $tr->length;
+        return $td->length;
     }
 
     private function chunckArray($match)
     {
-        return array_chunk($match[1], 6);
+        return array_chunk($match[1], $this->quantidadeDeColunas);
     }
 
     private function getURI($elementURI)
