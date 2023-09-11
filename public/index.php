@@ -16,7 +16,7 @@ $tipoDocumento = filter_input(INPUT_POST, 'tipo-documento');
 $numero = filter_input(INPUT_POST, 'numero');
 
 $texto = "Paulo Roberto Torres";
-$dataInicial="2023-09-01";
+$dataInicial="2023-01-01";
 $dataFinal="2023-09-11";
 $por = "texto";
 

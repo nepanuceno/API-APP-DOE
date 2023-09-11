@@ -22,12 +22,14 @@ class ConsultaDiario
         if (count($arrDiarios) <= 0) {
             $objDiarioStatus->status = false;
             $objDiarioStatus->message = "Não há resultados para esta consulta.";
-            return json_encode($objDiarioStatus);
+           
+            return json_encode(Array('status' => $objDiarioStatus));
         };
         $arrObjDiarios = [];
+        $arrObjDiariosAux = [];
 
         $objDiarioStatus->status = true;
-        $arrObjDiarios[] = $objDiarioStatus;
+        $arrObjDiarios[] = Array('status' => $objDiarioStatus);
 
         foreach($arrDiarios as $diario)
         {
@@ -41,8 +43,10 @@ class ConsultaDiario
             $objDiario->link = $this->getURI($diario[5]);
             $objDiario->imagen = str_replace("download","imagem", $this->getURI($diario[5]));
 
-            $arrObjDiarios[] = $objDiario;
+            $arrObjDiariosAux[] = $objDiario;
         }
+
+        array_push($arrObjDiarios, Array('diarios' => $arrObjDiariosAux));
 
         return json_encode($arrObjDiarios);
     }
