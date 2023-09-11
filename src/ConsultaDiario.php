@@ -7,20 +7,15 @@ use ApiDoe\DiarioOficial;
 class ConsultaDiario
 {
     private $diario;
+
     public function __construct(DiarioOficial $diario)
     {
         $this->diario = $diario;
     }
 
-    private function getResponseDOE($url)
-    {
-        return file_get_contents($url);
-    }
-
     public function makeObjectDOE()
     {
-        $html = $this->getResponseDOE($this->diario->getUrlBase());
-        // var_dump($html) or die();
+        $html = $this->getResponseDOE($this->makeUri()); //Mudar
         $arrDiarios = $this->getHTMLContents($html);
         $arrObjDiarios = [];
         
@@ -41,6 +36,33 @@ class ConsultaDiario
 
         return json_encode($arrObjDiarios);
     }
+
+    private function makeUri()
+    {
+        if ($this->diario->getPor() != NULL) {
+
+            switch ($this->diario->getpor()) {
+                case 'texto':
+                    $url = $this->diario->getUrlBase()."texto&texto={$this->diario->getTexto()}&data-inicial={$this->diario->getDataInicial()}&data-final={$this->diario->getDataFinal()}";
+                    return $url;
+                    break;
+                case 'doc':
+                    $url = $this->diario->getUrlBase()."doc&numero={$this->diario->getNumero()}";
+                    return $url;
+                    break;
+                case 'edicao':
+                    $url = $this->diario->getUrlBase()."edicao&edicao={$this->diario->getEdicao()}";
+                    return $url;
+                    break;
+            }
+        }                
+    }
+                    
+    private function getResponseDOE($url)
+    {
+        return file_get_contents($url);
+    }
+
 
     private function getHTMLContents($content)
     {

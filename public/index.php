@@ -15,10 +15,11 @@ $edicao = filter_input(INPUT_POST, 'edicao');
 $tipoDocumento = filter_input(INPUT_POST, 'tipo-documento');
 $numero = filter_input(INPUT_POST, 'numero');
 
-$dataInicial="2022-01-01";
-$dataFinal="2023-09-11";
+// $dataInicial="2022-01-01";
+// $dataFinal="2023-09-11";
+$por = "texto";
 
-$url = ("https://diariooficial.to.gov.br/busca?por=texto&texto=1079476&data-inicial=$dataInicial&data-final=$dataFinal");
+$url = "https://diariooficial.to.gov.br/busca?por=";
 
 $diario = new DiarioOficial();
 $diario->setPor($por);
