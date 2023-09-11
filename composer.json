@@ -1,0 +1,17 @@
+{
+    "name": "nepanuceno/api-doe",
+    "description": "API para fornecer dados de consulta parametrizada de diários oficiais do Tocantins.",
+    "type": "project",
+    "license": "MIT",
+    "autoload": {
+        "psr-4": {
+            "Nepanuceno\\ApiDoe\\": "src/"
+        }
+    },
+    "authors": [
+        {
+            "name": "Paulo Roberto Torres"
+        }
+    ],
+    "require": {}
+}
