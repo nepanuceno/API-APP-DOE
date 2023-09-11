@@ -18,7 +18,10 @@ $numero = filter_input(INPUT_POST, 'numero');
 $texto = "Paulo Roberto Torres";
 $dataInicial="2023-01-01";
 $dataFinal="2023-09-11";
-$por = "texto";
+$edicao = 6390;
+$tipoDocumento = 4;
+$numero = 88;
+$por = "doc"; // Mude o tipo de consulta para testar (edicao, doc, texto)
 
 $url = "https://diariooficial.to.gov.br/busca?por=";
 

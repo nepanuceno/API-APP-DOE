@@ -33,15 +33,17 @@ class ConsultaDiario
 
         foreach($arrDiarios as $diario)
         {
+            $uri = $this->getURI($diario[5]);
             $objDiario = new \stdClass();
 
+            $objDiario->id = (int) filter_var($uri, FILTER_SANITIZE_NUMBER_INT);
             $objDiario->edicao = $diario[0];
             $objDiario->data_publicacao = $diario[1];
             $objDiario->paginas = $diario[2];
             $objDiario->tamanho = $diario[3];
             $objDiario->downloads = $diario[4];
-            $objDiario->link = $this->getURI($diario[5]);
-            $objDiario->imagen = str_replace("download","imagem", $this->getURI($diario[5]));
+            $objDiario->link = $uri;
+            $objDiario->imagen = str_replace("download","imagem", $uri);
 
             $arrObjDiariosAux[] = $objDiario;
         }
@@ -61,7 +63,7 @@ class ConsultaDiario
                     return $url;
                     break;
                 case 'doc':
-                    $url = $this->diario->getUrlBase()."doc&numero={$this->diario->getNumero()}";
+                    $url = $this->diario->getUrlBase()."doc&tipo-documento={$this->diario->getTipoDocumento()}&numero={$this->diario->getNumero()}";
                     return $url;
                     break;
                 case 'edicao':
