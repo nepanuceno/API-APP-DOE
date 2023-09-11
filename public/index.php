@@ -24,12 +24,23 @@
         return $match[1][0];
     }
 
+    function chunckArray($match)
+    {
+        return array_chunk($match[1], 6);
+    }
 
-    function getElementHTML($content, $elementName)
+
+    function getHTMLContents($content)
     {
         $quantidadeResultados = getQuantidadeResultados($content);
         preg_match_all('/<td>(.*?)<\/td>/s', $content, $match);
-        $arrDiarios = array_chunk($match[1], 6);
+        return chunckArray($match);
+        
+    }
+
+    function makeObjectDOE($html)
+    {
+        $arrDiarios = getHTMLContents($html);
         $arrObjDiarios = [];
         
         foreach($arrDiarios as $diario)
@@ -50,6 +61,7 @@
         echo json_encode($arrObjDiarios);
     }
 
+
     $por = filter_input(INPUT_POST, 'por');
     $texto = filter_input(INPUT_POST, 'texto');
     $dataInicial = filter_input(INPUT_POST, 'data-inicial');
@@ -64,4 +76,5 @@
     $url = ("https://diariooficial.to.gov.br/busca?por=texto&texto=1079476&data-inicial=$dataInicial&data-final=$dataFinal");
 
     $response = getResponseDOE($url);
-    getElementHTML($response, 'table');
+    makeObjectDOE($response);
+
