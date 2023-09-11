@@ -15,8 +15,9 @@ $edicao = filter_input(INPUT_POST, 'edicao');
 $tipoDocumento = filter_input(INPUT_POST, 'tipo-documento');
 $numero = filter_input(INPUT_POST, 'numero');
 
-// $dataInicial="2022-01-01";
-// $dataFinal="2023-09-11";
+$texto = "Paulo Roberto Torres";
+$dataInicial="2023-09-01";
+$dataFinal="2023-09-11";
 $por = "texto";
 
 $url = "https://diariooficial.to.gov.br/busca?por=";
@@ -33,4 +34,3 @@ $diario->setUrlBase($url);
 
 $consulta = new ConsultaDiario($diario);
 echo $consulta->makeObjectDOE();
-

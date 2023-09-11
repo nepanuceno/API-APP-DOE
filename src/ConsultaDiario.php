@@ -15,10 +15,20 @@ class ConsultaDiario
 
     public function makeObjectDOE()
     {
+        $objDiarioStatus = new \stdClass();
+
         $html = $this->getResponseDOE($this->makeUri()); //Mudar
         $arrDiarios = $this->getHTMLContents($html);
+        if (count($arrDiarios) <= 0) {
+            $objDiarioStatus->status = false;
+            $objDiarioStatus->message = "Não há resultados para esta consulta.";
+            return json_encode($objDiarioStatus);
+        };
         $arrObjDiarios = [];
-        
+
+        $objDiarioStatus->status = true;
+        $arrObjDiarios[] = $objDiarioStatus;
+
         foreach($arrDiarios as $diario)
         {
             $objDiario = new \stdClass();
