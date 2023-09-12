@@ -41,9 +41,9 @@ class ConsultaDiario
             $objDiario = new \stdClass();
 
             $objDiario->id = (int) filter_var($uri, FILTER_SANITIZE_NUMBER_INT);
-            $objDiario->edicao = $diario[0];
+            $objDiario->edicao = filter_var($diario[0], FILTER_SANITIZE_NUMBER_INT);
             $objDiario->data_publicacao = $diario[1];
-            $objDiario->paginas = $diario[2];
+            $objDiario->paginas = filter_var($diario[2], FILTER_SANITIZE_NUMBER_INT);
             $objDiario->tamanho = $diario[3];
             $objDiario->downloads = $diario[4];
             $objDiario->link = $uri;
