@@ -61,8 +61,7 @@ class ConsultaDiario
     private function makeUri()
     {
         if ($this->diario->getPor() != NULL) {
-
-            switch ($this->diario->getpor()) {
+            switch ($this->diario->getPor()) {
                 case 'texto':
                     $url = $this->diario->getUrlBase()."texto&texto={$this->diario->getTexto()}&data-inicial={$this->diario->getDataInicial()}&data-final={$this->diario->getDataFinal()}";
                     return $url;
