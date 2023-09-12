@@ -26,11 +26,14 @@ class ConsultaDiario
            
             return json_encode(Array('status' => $objDiarioStatus));
         };
-        $arrObjDiarios = [];
+        // $arrObjDiarios = [];
         $arrObjDiariosAux = [];
 
-        $objDiarioStatus->status = true;
-        $arrObjDiarios[] = Array('status' => $objDiarioStatus);
+        $objDiariosResponse = new \stdClass();
+
+        // $objDiarioStatus->status = true;
+        // $arrObjDiarios[] = Array('status' => $objDiarioStatus);
+        $objDiariosResponse->status = true;
 
         foreach($arrDiarios as $diario)
         {
@@ -49,9 +52,10 @@ class ConsultaDiario
             $arrObjDiariosAux[] = $objDiario;
         }
 
-        array_push($arrObjDiarios, Array('diarios' => $arrObjDiariosAux));
 
-        return json_encode($arrObjDiarios);
+        // array_push($arrObjDiarios, Array('diarios' => $arrObjDiariosAux));
+        $objDiariosResponse->diarios = $arrObjDiariosAux;
+        return json_encode($objDiariosResponse);
     }
 
     private function makeUri()
