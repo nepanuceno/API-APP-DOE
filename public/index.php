@@ -10,8 +10,9 @@ header('Content-Type: application/json; charset=utf-8');
 
 $por = filter_input(INPUT_POST, 'por', FILTER_SANITIZE_SPECIAL_CHARS);
 $texto = filter_input(INPUT_POST, 'texto', FILTER_SANITIZE_SPECIAL_CHARS);
-$dataInicial = formatDate(filter_input(INPUT_POST, 'data-inicial'), null);
-$dataFinal = formatDate(filter_input(INPUT_POST, 'data-final'), null);
+
+$dataInicial = $por == 'texto' ? formatDate(filter_input(INPUT_POST, 'data-inicial'), null) : NULL;
+$dataFinal = $por == 'texto' ? formatDate(filter_input(INPUT_POST, 'data-final'), null) : NULL;
 $edicao = filter_input(INPUT_POST, 'edicao', FILTER_SANITIZE_SPECIAL_CHARS);
 $tipoDocumento = filter_input(INPUT_POST, 'tipo-documento');
 $numero = filter_input(INPUT_POST, 'numero');
