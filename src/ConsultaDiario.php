@@ -24,15 +24,11 @@ class ConsultaDiario
             $objDiarioStatus->status = false;
             $objDiarioStatus->message = "Não há resultados para esta consulta.";
            
-            return json_encode(Array('status' => $objDiarioStatus));
+            return json_encode($objDiarioStatus);
         };
-        // $arrObjDiarios = [];
         $arrObjDiariosAux = [];
 
         $objDiariosResponse = new \stdClass();
-
-        // $objDiarioStatus->status = true;
-        // $arrObjDiarios[] = Array('status' => $objDiarioStatus);
         $objDiariosResponse->status = true;
 
         foreach($arrDiarios as $diario)
@@ -52,8 +48,6 @@ class ConsultaDiario
             $arrObjDiariosAux[] = $objDiario;
         }
 
-
-        // array_push($arrObjDiarios, Array('diarios' => $arrObjDiariosAux));
         $objDiariosResponse->diarios = $arrObjDiariosAux;
         return json_encode($objDiariosResponse);
     }
